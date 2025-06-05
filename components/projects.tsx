@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import {useEffect, useState} from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -12,65 +12,89 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "Application E-commerce",
-      description: "Une plateforme e-commerce complète avec panier, paiement et gestion des commandes.",
+      title: "Détection de couleur de peau par IA",
+      description: "Classification des pixels d’une image selon s’ils représentent une couleur de peau, via différents modèles de machine learning.",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
-      category: "Web",
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "Système de Recommandation IA",
-      description: "Un système de recommandation basé sur l'IA pour suggérer des produits personnalisés.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Python", "TensorFlow", "Flask", "React"],
+      tags: ["Python", "OpenCV", "Scikit-learn", "IA"],
       category: "IA",
       github: "#",
       demo: "#",
     },
     {
-      title: "Application de Gestion de Projet",
-      description: "Un outil de gestion de projet avec tableaux Kanban et suivi des tâches.",
+      title: "Automatisation du recrutement chez Mobilis",
+      description: "Application web pour automatiser le recrutement des stagiaires chez Mobilis Algérie, avec gestion des candidatures et des entretiens.",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+      tags: ["PHP", "MySQL", "Bootstrap", "MVC"],
       category: "Web",
       github: "#",
       demo: "#",
     },
     {
-      title: "Chatbot IA",
-      description: "Un chatbot intelligent utilisant le traitement du langage naturel pour répondre aux questions.",
+      title: "Profil d'intérêt utilisateur à partir des tweets",
+      description: "Analyse des tweets et tags sur Twitter/Stack Overflow pour générer automatiquement un profil d’intérêts par utilisateur.",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["Python", "NLP", "FastAPI", "Vue.js"],
+      tags: ["Python", "NLP", "Scikit-learn", "FastAPI"],
       category: "IA",
       github: "#",
       demo: "#",
     },
     {
-      title: "Dashboard Analytics",
-      description: "Un tableau de bord d'analyse de données avec visualisations interactives.",
+      title: "Intégration d’Odoo chez DISTA Algérie",
+      description: "Déploiement du progiciel Odoo pour gérer les ventes, achats, livraisons et facturation dans une entreprise de distribution.",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["D3.js", "React", "Express", "MongoDB"],
+      tags: ["Odoo", "Python", "PostgreSQL"],
       category: "Web",
       github: "#",
       demo: "#",
     },
     {
-      title: "Système de Reconnaissance d'Images",
-      description: "Un système de reconnaissance d'images pour identifier des objets dans des photos.",
+      title: "Billetterie en ligne – Algérie Ferries",
+      description: "Développement d’une plateforme de réservation de traversées maritimes avec gestion des enregistrements et des paiements.",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["PyTorch", "OpenCV", "FastAPI", "React"],
-      category: "IA",
+      tags: ["Angular", "laravel", "MySQL"],
+      category: "Web",
       github: "#",
       demo: "#",
     },
-  ]
+    {
+      title: "Gestion d’événements sportifs géolocalisés",
+      description: "Application permettant aux sportifs de proposer ou rejoindre des événements selon leur position géographique avec Google Maps.",
+      image: "/placeholder.svg?height=400&width=600",
+      tags: ["React", "Flask", "Google Maps API", "PostgreSQL"],
+      category: "Web",
+      github: "#",
+      demo: "#",
+    },
+    {
+      title: "Site e-commerce monoproduit",
+      description: "Développement d’un micro-site e-commerce pour vendre un produit unique, avec panier, formulaire de commande et gestion API.",
+      image: "/placeholder.svg?height=400&width=600",
+      tags: ["FastAPI", "JavaScript", "HTML/CSS"],
+      category: "Web",
+      github: "#",
+      demo: "#",
+    },
+    {
+      title: "Flappy Bird en JavaScript",
+      description: "Réalisation d’un mini-jeu Flappy Bird avec gestion des scores via une API backend FastAPI.",
+      image: "/placeholder.svg?height=400&width=600",
+      tags: ["JavaScript", "Canvas", "FastAPI"],
+      category: "Jeu",
+      github: "#",
+      demo: "#",
+    },
+  ];
+
 
   const filters = ["Tous", "Web", "IA", "Mobile"]
+  const [filteredProjects,setFilredProjects]  =useState([...projects])
+  useEffect(() => {
+    setFilredProjects([...projects])
+  }, [activeFilter]);
 
-  const filteredProjects =
-    activeFilter === "Tous" ? projects : projects.filter((project) => project.category === activeFilter)
+  useEffect(() => {
+    setFilredProjects(activeFilter === "Tous" ? [...projects] : [...projects].filter((project) => project.category === activeFilter))
+  }, [activeFilter]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -86,6 +110,7 @@ export default function Projects() {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   }
+
 
   return (
     <section id="projects" className="py-20 bg-gray-900/50">
@@ -110,7 +135,7 @@ export default function Projects() {
               <Button
                 key={filter}
                 variant={activeFilter === filter ? "default" : "outline"}
-                onClick={() => setActiveFilter(filter)}
+                onClick={()=>{setActiveFilter(filter)}}
                 className={
                   activeFilter === filter
                     ? "bg-gradient-to-r from-purple-600 to-cyan-600"

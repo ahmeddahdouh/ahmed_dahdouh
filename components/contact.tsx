@@ -15,15 +15,14 @@ export default function Contact() {
   })
 
   const handleChange = (e) => {
+    debugger;
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    // Ici vous pouvez ajouter la logique pour envoyer le formulaire
     console.log(formData)
-    alert("Message envoyé avec succès!")
     setFormData({ name: "", email: "", message: "" })
   }
 
@@ -119,7 +118,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-gray-400">Email</p>
-                    <p className="font-medium">contact@example.com</p>
+                    <p className="font-medium">ahmed.dahdouh98@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -128,7 +127,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-gray-400">Téléphone</p>
-                    <p className="font-medium">+33 6 12 34 56 78</p>
+                    <p className="font-medium">+33 6 99 69 41 47</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -137,7 +136,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-gray-400">Localisation</p>
-                    <p className="font-medium">Paris, France</p>
+                    <p className="font-medium">Corte, France</p>
                   </div>
                 </div>
               </div>
@@ -147,19 +146,19 @@ export default function Contact() {
               <h3 className="text-2xl font-semibold mb-6">Réseaux sociaux</h3>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://github.com/ahmeddahdouh"
                   className="bg-gray-800 p-3 rounded-full hover:bg-purple-500/20 transition-colors duration-300"
                 >
                   <Github className="h-6 w-6" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/ahmed-dahdouh-48320b1a8/"
                   className="bg-gray-800 p-3 rounded-full hover:bg-cyan-500/20 transition-colors duration-300"
                 >
                   <Linkedin className="h-6 w-6" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/ahmed-dahdouh-48320b1a8/"
                   className="bg-gray-800 p-3 rounded-full hover:bg-blue-500/20 transition-colors duration-300"
                 >
                   <Twitter className="h-6 w-6" />
